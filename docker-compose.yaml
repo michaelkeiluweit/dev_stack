@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  php:
+    image: php:7.4-fpm
+    volumes:
+      - ./data/www/:/usr/local/apache2/htdocs/:cached
+  webserver:
+    image: 'httpd:latest'
+    depends_on:
+      - php
+    volumes:
+      - ./data/www/:/usr/local/apache2/htdocs/:cached
+      - ./config/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - 80:80
+
+  database:
+    image: 'mysql:8.0'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: main
+    ports:
+      - '3306:3306'
+
+  mailhog:
+    image: 'mailhog/mailhog:latest'
+    ports:
+      - 1025:1025
+      - 8025:8025
+
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin:latest'
+    ports:
+      - 8080:80
+    depends_on:
+      - database
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: root
