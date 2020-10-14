@@ -15,7 +15,7 @@ services:
     ports:
       - 80:80
 
-  database:
+  mysql:
     image: 'mysql:8.0'
     volumes:
       - ./data/mysql/:/var/lib/mysql
@@ -36,7 +36,7 @@ services:
     ports:
       - 8080:80
     depends_on:
-      - database
+      - mysql
     environment:
-      PMA_HOST: database
+      PMA_HOST: myqsl
       MYSQL_ROOT_PASSWORD: root
