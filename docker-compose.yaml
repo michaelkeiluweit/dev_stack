@@ -25,7 +25,6 @@ services:
     ports:
       - '3306:3306'
 
-
   mailhog:
     image: 'mailhog/mailhog:latest'
     ports:
