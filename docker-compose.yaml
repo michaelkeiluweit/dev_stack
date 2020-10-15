@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   php:
-    image: php:7.4-fpm
+    image: mkphp:1.0
     volumes:
       - ./data/www/:/usr/local/apache2/htdocs/:cached
   webserver:
@@ -15,7 +15,7 @@ services:
     ports:
       - 80:80
 
-  database:
+  db:
     image: 'mysql:8.0'
     volumes:
       - ./data/mysql/:/var/lib/mysql
@@ -24,6 +24,7 @@ services:
       MYSQL_DATABASE: main
     ports:
       - '3306:3306'
+
 
   mailhog:
     image: 'mailhog/mailhog:latest'
@@ -36,7 +37,7 @@ services:
     ports:
       - 8080:80
     depends_on:
-      - database
+      - db
     environment:
-      PMA_HOST: database
+      PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
