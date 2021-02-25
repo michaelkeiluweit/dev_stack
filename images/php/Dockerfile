@@ -16,19 +16,20 @@ RUN apt-get update -y && \
 # configure PHP
 RUN touch /usr/local/etc/php/conf.d/php.ini; \
         echo memory_limit=-1 >> /usr/local/etc/php/conf.d/php.ini; \
-        echo max_execution_time=0 >> /usr/local/etc/php/conf.d/php.ini
+		echo max_execution_time=0 >> /usr/local/etc/php/conf.d/php.ini; \
+		echo error_reporting = E_ALL >> /usr/local/etc/php/conf.d/php.ini; \
+		echo log_errors = On >> /usr/local/etc/php/conf.d/php.ini; \
+		echo error_log = /proc/self/fd/2 >> /usr/local/etc/php/conf.d/php.ini;
 
 # configure xdebug
 RUN touch /usr/local/etc/php/conf.d/xdebug.ini; \
-	echo xdebug.remote_enable=1 >> /usr/local/etc/php/conf.d/xdebug.ini; \
-  	echo xdebug.remote_autostart=0 >> /usr/local/etc/php/conf.d/xdebug.ini; \
-  	echo xdebug.remote_port=9001 >> /usr/local/etc/php/conf.d/xdebug.ini; \
-  	echo xdebug.remote_host=host.docker.internal >> /usr/local/etc/php/conf.d/xdebug.ini; \
+	echo xdebug.mode=debug >> /usr/local/etc/php/conf.d/xdebug.ini; \
+  	echo xdebug.client_host=host.docker.internal >> /usr/local/etc/php/conf.d/xdebug.ini; \
   	echo xdebug.idekey=PHPSTORM >> /usr/local/etc/php/conf.d/xdebug.ini; \
   	echo xdebug.remote_handler=dbgp >> /usr/local/etc/php/conf.d/xdebug.ini; \
-  	echo xdebug.profiler_enable_trigger = 1 >> /usr/local/etc/php/conf.d/xdebug.ini; \
-  	echo xdebug.profiler_output_dir=/var/www/html/ >> /usr/local/etc/php/conf.d/xdebug.ini; \
-  	echo xdebug.trace_enable_trigger_value="XDEBUG_PROFILE" >> /usr/local/etc/php/conf.d/xdebug.ini; \
+  	echo xdebug.start_with_request=trigger >> /usr/local/etc/php/conf.d/xdebug.ini; \
+  	echo xdebug.output_dir=/var/www/html/ >> /usr/local/etc/php/conf.d/xdebug.ini; \
+  	echo xdebug.trigger_value="XDEBUG_PROFILE" >> /usr/local/etc/php/conf.d/xdebug.ini; \
   	echo date.timezone = Europe/Berlin >> /usr/local/etc/php/conf.d/timezone.ini
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
