@@ -20,6 +20,6 @@ with
 Build the custom PHP image & start the containers
 
 ```
-docker build --tag=mkphp:1.0 images/php/
+docker build --tag=mkphp:1.0 images/php/8.0/
 docker-compose up -d
 ```
