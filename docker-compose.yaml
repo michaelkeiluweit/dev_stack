@@ -4,13 +4,13 @@ services:
   php:
     image: mkphp:1.0
     volumes:
-      - ./data/www/:/usr/local/apache2/htdocs/:cached
+      - ./data/www/:/var/www/html/:cached
   webserver:
     image: 'httpd:latest'
     depends_on:
       - php
     volumes:
-      - ./data/www/:/usr/local/apache2/htdocs/:cached
+      - ./data/www/:/var/www/html/:cached
       - ./config/httpd.conf:/usr/local/apache2/conf/httpd.conf
     ports:
       - 80:80
