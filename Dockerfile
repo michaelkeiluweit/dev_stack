@@ -47,6 +47,3 @@ RUN touch /usr/local/etc/php/conf.d/xdebug.ini; \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN export PHP_IDE_CONFIG="serverName=Docker"
-
-RUN  curl -sS https://get.symfony.com/cli/installer | bash && \
-     mv /root/.symfony/bin/symfony /usr/local/bin/symfony
