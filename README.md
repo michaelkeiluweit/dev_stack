@@ -11,4 +11,5 @@ docker-compose up -d
 ```
 
 ## Troubleshooting
-- The apache webserver expects the directory `public` within the folder `www`, as it is the document root.
+- The apache webserver expects the directory `public` within the folder `www`, as it is the document root.  
+In case the entrypoint of your project is different to public, a workaround could be to create a symlink: `ln -s src/public/ public`.
