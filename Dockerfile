@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM php:8.1-apache
 
 # Sets the document root director for the webserver to 'public/'
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
