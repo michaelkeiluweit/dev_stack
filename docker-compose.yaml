@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   php:
-    image: mkphp:1.0
+    image: mkphp
     volumes:
-      - ./data/www/:/var/www/html/:cached
+      - ./app/:/var/www/html/:cached
     ports:
       - 80:80
     networks:
