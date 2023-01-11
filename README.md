@@ -6,6 +6,7 @@ Build the PHP container
 
 Build the custom PHP image & start the containers
 ```
+git clone https://github.com/michaelkeiluweit/dev_stack.git --branch=php
 docker build --tag=mkphp .
 docker-compose up -d
 ```
