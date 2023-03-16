@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   php:
-    image: mkphp:1.0
+    image: php-symfony6
     volumes:
       - ./data/www/:/var/www/html/:cached
     ports:
