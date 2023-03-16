@@ -1,18 +1,12 @@
 
 
 ## Setup
-```
-git clone --branch php https://github.com/michaelkeiluweit/dev_stack.git
-```
 
 Build the custom PHP image & start the containers
 ```
-docker build --tag=mkphp:1.0 .
+git clone https://github.com/michaelkeiluweit/dev_stack.git --branch=symfony6
+docker build --tag=php-symfony6 .
 docker-compose up -d
-```
-
-```
-docker-compose exec php bash
 ```
 
 ## Troubleshooting
