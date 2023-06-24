@@ -8,7 +8,7 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # install dependencies and cleanup (needs to be one step, as else it will cache in the laver)
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
-    git iproute2 libcurl4-openssl-dev libxml2-dev libzip-dev sudo && \
+    git iproute2 libcurl4-openssl-dev libxml2-dev libzip-dev zip unzip sudo && \
     pecl install xdebug && \
     docker-php-ext-enable xdebug && \
     #docker-php-ext-install -j$(nproc) curl json xml mbstring zip bcmath soap && \
